@@ -6,7 +6,41 @@ using System.Threading.Tasks;
 
 namespace GraphicalTestApp
 {
-    class Bullet
+    class Bullet : Entity
     {
+        private Sprite _bulletSprite = new Sprite("images/redBarrel.png");
+        private AABB _hitbox;
+
+        public Bullet(float x, float y) : base(x, y)
+        {
+            X = x;
+            Y = y;
+
+            AABB hitbox = new AABB(_bulletSprite.Width, _bulletSprite.Height);
+            hitbox.X += 11;
+            hitbox.Y += 11;
+
+            _hitbox = hitbox;
+
+            AddChild(hitbox);
+            AddChild(_bulletSprite);
+        }
+
+        private void BulletCleanUp(float deltaTime)
+        {
+            //checking left and right
+            if (_hitbox.Right >= Game.windowsizeX || _hitbox.Left <= 0)
+            {
+                XVelocity = -XVelocity;
+
+            }
+            //bounce of left and right of window
+            if (_hitbox.Bottom >= Game.windowsizeY || _hitbox.Top <= 0)
+            {
+
+                YVelocity = -YVelocity;
+
+            }
+        }
     }
 }

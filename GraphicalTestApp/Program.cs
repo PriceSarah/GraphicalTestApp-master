@@ -10,11 +10,17 @@ namespace GraphicalTestApp
     {
         static void Main(string[] args)
         {
-            Game game = new Game(1280, 760, "Bomber Man Remake");
+            Game game = new Game(1280, 760, "Tank Battle");
 
             Actor root = new Actor();
             game.Root = root;
 
+            Player1 player1 = new Player1(400, 400);
+
+            Player2 player2 = new Player2(700, 700);
+
+            root.AddChild(player1);
+            root.AddChild(player2);
             //## Set up game here ##//
 
             game.Run();

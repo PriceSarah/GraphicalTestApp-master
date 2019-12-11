@@ -11,32 +11,27 @@ namespace GraphicalTestApp
         {
             //## Implement velocity on the X axis ##//
             get
-            {
-                return _velocity.x;
-
-            }
+            { return _velocity.x; }
             set
-            {
-                _velocity.x = value;
-            }
+            { _velocity.x = value; }
         }
         public float XAcceleration
         {
             //## Implement acceleration on the X axis ##//
-            get { return 0; }
-            set { }
+            get { return _acceleration.x; }
+            set { _acceleration.x = value; }
         }
         public float YVelocity
         {
             //## Implement velocity on the Y axis ##//
-            get { return 0; }
-            set { }
+            get { return _velocity.y ; }
+            set { _velocity.y = value; }
         }
         public float YAcceleration
         {
             //## Implement acceleration on the Y axis ##//
-            get { return 0; }
-            set { }
+            get { return _acceleration.y; }
+            set { _acceleration.y = value;  }
         }
 
         //Creates an Entity at the specified coordinates
@@ -50,6 +45,10 @@ namespace GraphicalTestApp
         {
             //## Calculate velocity from acceleration ##//
             //## Calculate position from velocity ##//
+            XVelocity = XVelocity + XAcceleration * deltaTime;
+            YVelocity = YVelocity + YAcceleration * deltaTime;
+            X += XVelocity * deltaTime;
+            Y += YVelocity * deltaTime;
             base.Update(deltaTime);
         }
     }

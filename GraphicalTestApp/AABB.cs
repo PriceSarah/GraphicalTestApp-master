@@ -6,11 +6,11 @@ namespace GraphicalTestApp
     {
         public float Width { get; set; } = 1;
         public float Height { get; set; } = 1;
-        public static bool canDrawHitbox = false;
+        public static bool canDrawHitbox = true;
         private Vector3 _min = new Vector3(float.NegativeInfinity, float.NegativeInfinity, float.NegativeInfinity);
         private Vector3 _max = new Vector3(float.PositiveInfinity, float.PositiveInfinity, float.PositiveInfinity);
 
-        Raylib.Color color = Raylib.Color.RED;
+        Raylib.Color color = Raylib.Color.BLUE;
 
         //Returns the Y coordinate at the top of the box
         public float Top

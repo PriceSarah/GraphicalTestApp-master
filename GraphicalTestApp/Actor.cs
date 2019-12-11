@@ -134,7 +134,7 @@ namespace GraphicalTestApp
                 _globalTransform = _localTransform;
             }
 
-            foreach (Entity child in _children)
+            foreach (Actor child in _children)
             {
                 child.UpdateTransform();
             }
@@ -172,23 +172,23 @@ namespace GraphicalTestApp
             return false;
         }
 
-        public void ToggleHitboxes()
-        {
-            if (Input.IsKeyPressed(61))//=
-            {
-                AABB.canDrawHitbox = true;
-            }
-            if (Input.IsKeyPressed(45))//-
-            {
-                AABB.canDrawHitbox = false;
-            }
-        }
+        //public void ToggleHitboxes()
+        //{
+        //    if (Input.IsKeyPressed(122))//z
+        //    {
+        //        AABB.canDrawHitbox = true;
+        //    }
+        //    if (Input.IsKeyPressed(120))//x
+        //    {
+        //        AABB.canDrawHitbox = false;
+        //    }
+        //}
 
         //Call the OnUpdate events of the Actor and its children
         public virtual void Update(float deltaTime)
         {
 
-            ToggleHitboxes();
+            //ToggleHitboxes();
 
             //Update this Actor and its children's transforms
             UpdateTransform();
