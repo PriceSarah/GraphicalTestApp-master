@@ -9,14 +9,15 @@ namespace GraphicalTestApp
         public Turret1(float x, float y) : base(x, y)
         {
                 AddChild(_turret1);
+               
         }
 
         public void Fire()
         {
             Bullet bullet1 = new Bullet(XAbsolute, YAbsolute);
             bullet1.Rotate(GetRotation());
-            bullet1.XVelocity = (float)Math.Cos(GetRotation() - Math.PI * .5f) * 300;
-            bullet1.YVelocity = (float)Math.Sin(GetRotation() - Math.PI * .5f) * 300;
+            bullet1.XVelocity = GetDirectionAbsolute().x * -300;
+            bullet1.YVelocity = GetDirectionAbsolute().y * -300;
             Parent.Parent.AddChild(bullet1);
 
         }
@@ -33,11 +34,11 @@ namespace GraphicalTestApp
 
         public void Fire()
         {
-            Bullet bullet = new Bullet(XAbsolute, YAbsolute);
-            bullet.Rotate(GetRotation());
-            bullet.XVelocity = (float)Math.Cos(GetRotation() - Math.PI * .5f) * 300;
-            bullet.YVelocity = (float)Math.Sin(GetRotation() - Math.PI * .5f) * 300;
-            Parent.Parent.AddChild(bullet);
+            Bullet bullet2 = new Bullet(XAbsolute, YAbsolute);
+            bullet2.Rotate(GetRotation());
+            bullet2.XVelocity = GetDirectionAbsolute().x * -300;
+            bullet2.YVelocity = GetDirectionAbsolute().y * -300;
+            Parent.Parent.AddChild(bullet2);
 
         }
     }

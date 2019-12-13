@@ -47,6 +47,7 @@ namespace GraphicalTestApp
             //## Calculate position from velocity ##//
             XVelocity = XVelocity + XAcceleration * deltaTime;
             YVelocity = YVelocity + YAcceleration * deltaTime;
+
             X += XVelocity * deltaTime;
             Y += YVelocity * deltaTime;
             base.Update(deltaTime);

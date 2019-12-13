@@ -20,12 +20,15 @@ namespace GraphicalTestApp
 
         private int _maxSpeed = 35;
 
+        public static Player1 player1;
+
         public Player1(float x, float y) : base(x, y)
         {
             //Sets up the player
             X = x;
             Y = y;
-            
+            player1 = this;
+
             //Sets up the hitbox
             AABB Hitbox = new AABB(_playerSprite.Width, _playerSprite.Height);
             hitbox = Hitbox;
@@ -43,6 +46,8 @@ namespace GraphicalTestApp
             OnUpdate += Rotation;
             OnUpdate += bounceCheck;
             OnUpdate += Fire;
+
+            stopwatch.Start();
         }
             
         public AABB Hitbox()
@@ -145,10 +150,11 @@ namespace GraphicalTestApp
                     if(stopwatch.ElapsedMilliseconds > 300)
                     {
                          _turret1.Fire();
+                        stopwatch.Restart();
                     }
                 }
                 
             }
-
+       
     }
 }

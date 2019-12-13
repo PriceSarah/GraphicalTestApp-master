@@ -19,8 +19,11 @@ namespace GraphicalTestApp
 
             Player2 player2 = new Player2(700, 700);
 
+            WallGenerator wallgenerator = new WallGenerator();
+
             root.AddChild(player1);
             root.AddChild(player2);
+            root.AddChild(wallgenerator);
             //## Set up game here ##//
 
             game.Run();
