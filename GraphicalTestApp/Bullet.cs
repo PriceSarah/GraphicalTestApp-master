@@ -49,11 +49,11 @@ namespace GraphicalTestApp
         {
             if(_hitbox.DetectCollision(Player1.player1.hitbox))
             {
-                Parent.RemoveChild(Player1.player1);
+                Parent.RemoveChild(this);
             }
             else if (_hitbox.DetectCollision(Player2.player2.hitbox))
             {
-                Parent.RemoveChild(Player2.player2);
+                Parent.RemoveChild(this);
             }
         }
     }

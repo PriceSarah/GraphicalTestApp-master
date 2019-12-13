@@ -23,7 +23,7 @@ namespace GraphicalTestApp
 
             root.AddChild(player1);
             root.AddChild(player2);
-            root.AddChild(wallgenerator);
+            //root.AddChild(wallgenerator);
             //## Set up game here ##//
 
             game.Run();

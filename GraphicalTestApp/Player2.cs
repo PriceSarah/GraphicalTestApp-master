@@ -45,6 +45,7 @@ namespace GraphicalTestApp
             OnUpdate += Rotation;
             OnUpdate += bounceCheck;
             OnUpdate += Fire;
+            OnUpdate += turretRotation;
 
             stopwatch.Start();
         }
@@ -118,6 +119,26 @@ namespace GraphicalTestApp
             }
         }
 
+        private void turretRotation(float deltaTime)
+        {
+            //rotate turrret right input 7
+            if (Input.IsKeyDown(327))
+            {
+
+                _turret2.Rotate(-3f * deltaTime);
+
+
+            }
+            //rotate turret left input 9
+            else if (Input.IsKeyDown(329))
+            {
+
+                _turret2.Rotate(3f * deltaTime);
+
+
+            }
+        }
+
         private void speedCheck(float deltatime)
         {
             //check movement right
@@ -152,6 +173,13 @@ namespace GraphicalTestApp
                     stopwatch.Restart();
                 }
             }
+
+        }
+
+        public void Playerhit()
+        {
+
+            Parent.RemoveChild(player2);
 
         }
     }
