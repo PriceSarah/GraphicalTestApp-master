@@ -9,7 +9,6 @@ namespace GraphicalTestApp
 {
     class Player1 : Entity
     {
-
         private Sprite _playerSprite = new Sprite("images/redBody.png");
 
         public AABB hitbox;
@@ -66,10 +65,10 @@ namespace GraphicalTestApp
                 YAcceleration = (float)Math.Sin(GetRotation() - Math.PI * .5f) * 30;
             }
 
-            if (Input.IsKeyDown(83))
+            else if (Input.IsKeyDown(83))
             {
-                XAcceleration = (float)Math.Cos(GetRotation() - Math.PI * .5f) * 30;
-                YAcceleration = (float)Math.Sin(GetRotation() - Math.PI * .5f) * 30;
+                XAcceleration = (float)Math.Cos(GetRotation() - Math.PI * -.5f) * 30;
+                YAcceleration = (float)Math.Sin(GetRotation() - Math.PI * -.5f) * 30;
             }
 
             else
@@ -79,20 +78,20 @@ namespace GraphicalTestApp
 
                 if (XVelocity > 0)
                 {
-                    XVelocity -= 60 * deltaTime;
+                    XVelocity -= 100 * deltaTime;
                 }
                 else if (XVelocity < 0)
                 {
-                    XVelocity += 60 * deltaTime;
+                    XVelocity += 100 * deltaTime;
                 }
 
                 if (YVelocity > 0)
                 {
-                    YVelocity -= 60 * deltaTime;
+                    YVelocity -= 100 * deltaTime;
                 }
                 else if (YVelocity < 0)
                 {
-                    YVelocity += 60 * deltaTime;
+                    YVelocity += 100 * deltaTime;
                 }
             }
         }
