@@ -60,6 +60,12 @@ namespace GraphicalTestApp
                 YAcceleration = (float)Math.Sin(GetRotation() - Math.PI * .5f) * 30;
             }
 
+            if (Input.IsKeyDown(83))
+            {
+                XAcceleration = (float)Math.Cos(GetRotation() - Math.PI * .5f) * 30;
+                YAcceleration = (float)Math.Sin(GetRotation() - Math.PI * .5f) * 30;
+            }
+
             else
             {
                 XAcceleration = 0;
@@ -67,20 +73,20 @@ namespace GraphicalTestApp
 
                 if (XVelocity > 0)
                 {
-                    XVelocity -= 100 * deltaTime;
+                    XVelocity -= 60 * deltaTime;
                 }
                 else if (XVelocity < 0)
                 {
-                    XVelocity += 100 * deltaTime;
+                    XVelocity += 60 * deltaTime;
                 }
 
                 if (YVelocity > 0)
                 {
-                    YVelocity -= 100 * deltaTime;
+                    YVelocity -= 60 * deltaTime;
                 }
                 else if (YVelocity < 0)
                 {
-                    YVelocity += 100 * deltaTime;
+                    YVelocity += 60 * deltaTime;
                 }
             }
         }

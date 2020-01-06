@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace GraphicalTestApp
 {
@@ -11,6 +12,12 @@ namespace GraphicalTestApp
         private Sprite _playerSprite = new Sprite("images/blueBody.png");
 
         public AABB hitbox;
+        
+        private Stopwatch stopwatch = new Stopwatch();
+
+        private Turret2 _turret2 = new Turret2(0, 0);
+
+        private int _maxSpeed = 35;
 
         public Player2(float x, float y) : base(x, y)
         {
@@ -28,11 +35,13 @@ namespace GraphicalTestApp
             //Adding all children
             AddChild(_playerSprite);
             AddChild(hitbox);
+            AddChild(_turret2);
 
             //Updating everything
             OnUpdate += Movement;
             OnUpdate += Rotation;
             OnUpdate += bounceCheck;
+            OnUpdate += Fire;
         }
 
         public AABB Hitbox()
@@ -50,6 +59,12 @@ namespace GraphicalTestApp
                 YAcceleration = (float)Math.Sin(GetRotation() - Math.PI * .5f) * 30;
             }
 
+            if (Input.IsKeyDown(325))
+            {
+                XAcceleration = (float)Math.Cos(GetRotation() - Math.PI * .5f) * 30;
+                YAcceleration = (float)Math.Sin(GetRotation() - Math.PI * .5f) * 30;
+            }
+
             else
             {
                 XAcceleration = 0;
@@ -57,20 +72,20 @@ namespace GraphicalTestApp
 
                 if (XVelocity > 0)
                 {
-                    XVelocity -= 100 * deltaTime;
+                    XVelocity -= 60 * deltaTime;
                 }
                 else if (XVelocity < 0)
                 {
-                    XVelocity += 100 * deltaTime;
+                    XVelocity += 60 * deltaTime;
                 }
 
                 if (YVelocity > 0)
                 {
-                    YVelocity -= 100 * deltaTime;
+                    YVelocity -= 60 * deltaTime;
                 }
                 else if (YVelocity < 0)
                 {
-                    YVelocity += 100 * deltaTime;
+                    YVelocity += 60 * deltaTime;
                 }
             }
         }
@@ -102,6 +117,42 @@ namespace GraphicalTestApp
                 YVelocity = -YVelocity;
 
             }
+        }
+
+        private void speedCheck(float deltatime)
+        {
+            //check movement right
+            if (XVelocity > _maxSpeed)
+            {
+                XVelocity = _maxSpeed;
+            }
+            //check movment left
+            if (XVelocity < -_maxSpeed)
+            {
+                XVelocity = -_maxSpeed;
+            }
+            //check movment down
+            if (YVelocity > _maxSpeed)
+            {
+                YVelocity = _maxSpeed;
+            }
+            //check movment up
+            if (YVelocity < -_maxSpeed)
+            {
+                YVelocity = -_maxSpeed;
+            }
+        }
+        private void Fire(float deltaTime)
+        {
+            //Fires if Enter is pressed
+            if (Input.IsKeyDown(335))
+            {
+                if (stopwatch.ElapsedMilliseconds > 300)
+                {
+                    _turret2.Fire();
+                }
+            }
+
         }
     }
 }
