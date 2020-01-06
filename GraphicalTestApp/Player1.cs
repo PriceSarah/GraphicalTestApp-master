@@ -20,12 +20,15 @@ namespace GraphicalTestApp
 
         private int _maxSpeed = 35;
 
+        public static Player1 player1;
+
         public Player1(float x, float y) : base(x, y)
         {
             //Sets up the player
             X = x;
             Y = y;
-            
+            player1 = this;
+
             //Sets up the hitbox
             AABB Hitbox = new AABB(_playerSprite.Width, _playerSprite.Height);
             hitbox = Hitbox;
@@ -43,6 +46,9 @@ namespace GraphicalTestApp
             OnUpdate += Rotation;
             OnUpdate += bounceCheck;
             OnUpdate += Fire;
+            OnUpdate += turretRotation;
+
+            stopwatch.Start();
         }
             
         public AABB Hitbox()
@@ -120,6 +126,26 @@ namespace GraphicalTestApp
             }
         }
 
+        private void turretRotation(float deltaTime)
+        {
+            //rotate turrret right input Q
+            if (Input.IsKeyDown(81))
+            {
+
+                _turret1.Rotate(-3f * deltaTime);
+
+
+            }
+            //rotate turret left input E
+            else if (Input.IsKeyDown(69))
+            {
+
+                _turret1.Rotate(3f * deltaTime);
+
+
+            }
+        }
+
         private void speedCheck(float deltatime)
         {
             //check movement right
@@ -151,10 +177,18 @@ namespace GraphicalTestApp
                     if(stopwatch.ElapsedMilliseconds > 300)
                     {
                          _turret1.Fire();
+                        stopwatch.Restart();
                     }
                 }
                 
             }
 
+
+        public void Playerhit()
+        {
+         
+            Parent.RemoveChild(player1);
+ 
+        }
     }
 }

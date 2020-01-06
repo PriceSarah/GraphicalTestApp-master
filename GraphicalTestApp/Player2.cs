@@ -12,18 +12,21 @@ namespace GraphicalTestApp
         private Sprite _playerSprite = new Sprite("images/blueBody.png");
 
         public AABB hitbox;
-        
+
         private Stopwatch stopwatch = new Stopwatch();
 
         private Turret2 _turret2 = new Turret2(0, 0);
 
         private int _maxSpeed = 35;
 
+        public static Player2 player2;
+
         public Player2(float x, float y) : base(x, y)
         {
             //Sets up the player
             X = x;
             Y = y;
+            player2 = this;
 
             //Sets up the hitbox
             AABB Hitbox = new AABB(_playerSprite.Width, _playerSprite.Height);
@@ -42,6 +45,9 @@ namespace GraphicalTestApp
             OnUpdate += Rotation;
             OnUpdate += bounceCheck;
             OnUpdate += Fire;
+            OnUpdate += turretRotation;
+
+            stopwatch.Start();
         }
 
         public AABB Hitbox()
@@ -119,6 +125,26 @@ namespace GraphicalTestApp
             }
         }
 
+        private void turretRotation(float deltaTime)
+        {
+            //rotate turrret right input 7
+            if (Input.IsKeyDown(327))
+            {
+
+                _turret2.Rotate(-3f * deltaTime);
+
+
+            }
+            //rotate turret left input 9
+            else if (Input.IsKeyDown(329))
+            {
+
+                _turret2.Rotate(3f * deltaTime);
+
+
+            }
+        }
+
         private void speedCheck(float deltatime)
         {
             //check movement right
@@ -144,14 +170,22 @@ namespace GraphicalTestApp
         }
         private void Fire(float deltaTime)
         {
-            //Fires if Enter is pressed
+            //Fires if left shift is pressed
             if (Input.IsKeyDown(335))
             {
                 if (stopwatch.ElapsedMilliseconds > 300)
                 {
                     _turret2.Fire();
+                    stopwatch.Restart();
                 }
             }
+
+        }
+
+        public void Playerhit()
+        {
+
+            Parent.RemoveChild(player2);
 
         }
     }

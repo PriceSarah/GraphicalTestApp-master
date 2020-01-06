@@ -91,6 +91,15 @@ namespace GraphicalTestApp
             return 0;
         }
 
+        public Vector3 GetDirection()
+        {
+            return new Vector3(_localTransform.m12, _localTransform.m11, 0);
+        }
+
+        public Vector3 GetDirectionAbsolute()
+        {
+            return new Vector3(_globalTransform.m12, _globalTransform.m11, 0);
+        }
         public void Scale(float scale)
         {
             //## Implement scaling _localTransform ##//
@@ -108,18 +117,19 @@ namespace GraphicalTestApp
 
             child.Parent = this;
 
-            _children.Add(child);
+            _additions.Add(child);
         }
 
         public void RemoveChild(Actor child)
         {
             //## Implement RemoveChild(Actor) ##//
-            bool isMyChild = _children.Remove(child);
-            if (isMyChild)
-            {
-                child.Parent = null;
-                child._localTransform = child._globalTransform;
-            }
+            //bool isMyChild = _children.Remove(child);
+            //if (isMyChild)
+            //{
+            //    child.Parent = null;
+            //    child._localTransform = child._globalTransform;
+            //}
+            _removals.Add(child);
         }
 
         public void UpdateTransform()

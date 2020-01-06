@@ -8,7 +8,7 @@ namespace GraphicalTestApp
 {
     class Bullet : Entity
     {
-        private Sprite _bulletSprite = new Sprite("images/redBarrel.png");
+        private Sprite _bulletSprite = new Sprite("images/bullet.png");
         private AABB _hitbox;
 
         public Bullet(float x, float y) : base(x, y)
@@ -17,13 +17,15 @@ namespace GraphicalTestApp
             Y = y;
 
             AABB hitbox = new AABB(_bulletSprite.Width, _bulletSprite.Height);
-            hitbox.X += 11;
-            hitbox.Y += 11;
+            hitbox.X += 0;
+            hitbox.Y += 0;
 
             _hitbox = hitbox;
 
             AddChild(hitbox);
             AddChild(_bulletSprite);
+
+            OnUpdate += BulletCollision;
         }
 
         private void BulletCleanUp(float deltaTime)
@@ -40,6 +42,18 @@ namespace GraphicalTestApp
 
                 YVelocity = -YVelocity;
 
+            }
+        }
+
+        private void BulletCollision(float deltaTime)
+        {
+            if(_hitbox.DetectCollision(Player1.player1.hitbox))
+            {
+                Parent.RemoveChild(this);
+            }
+            else if (_hitbox.DetectCollision(Player2.player2.hitbox))
+            {
+                Parent.RemoveChild(this);
             }
         }
     }
