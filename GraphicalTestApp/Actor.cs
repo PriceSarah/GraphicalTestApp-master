@@ -122,13 +122,6 @@ namespace GraphicalTestApp
 
         public void RemoveChild(Actor child)
         {
-            //## Implement RemoveChild(Actor) ##//
-            //bool isMyChild = _children.Remove(child);
-            //if (isMyChild)
-            //{
-            //    child.Parent = null;
-            //    child._localTransform = child._globalTransform;
-            //}
             _removals.Add(child);
         }
 
@@ -173,15 +166,7 @@ namespace GraphicalTestApp
             Started = true;
         }
 
-        public bool inRange(float val, float min, float max)
-        {
-            if (val > min && val < max)
-            {
-                return true;
-            }
-            return false;
-        }
-
+        
         //public void ToggleHitboxes()
         //{
         //    if (Input.IsKeyPressed(122))//z

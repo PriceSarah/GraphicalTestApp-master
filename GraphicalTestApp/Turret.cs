@@ -34,11 +34,11 @@ namespace GraphicalTestApp
 
         public void Fire()
         {
-            Bullet bullet2 = new Bullet(XAbsolute, YAbsolute);
-            bullet2.Rotate(GetRotation());
-            bullet2.XVelocity = GetDirectionAbsolute().x * -300;
-            bullet2.YVelocity = GetDirectionAbsolute().y * -300;
-            Parent.Parent.AddChild(bullet2);
+            Bullet bullet1 = new Bullet(XAbsolute, YAbsolute);
+            bullet1.Rotate(GetRotation());
+            bullet1.XVelocity = GetDirectionAbsolute().x * -300;
+            bullet1.YVelocity = GetDirectionAbsolute().y * -300;
+            Parent.Parent.AddChild(bullet1);
 
         }
     }

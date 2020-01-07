@@ -31,7 +31,7 @@ namespace GraphicalTestApp
             //Sets up the hitbox
             AABB Hitbox = new AABB(_playerSprite.Width, _playerSprite.Height);
             hitbox = Hitbox;
-            
+
             hitbox.X = 0;
             hitbox.Y = 0;
 
@@ -47,9 +47,10 @@ namespace GraphicalTestApp
             OnUpdate += Fire;
             OnUpdate += turretRotation;
 
+
             stopwatch.Start();
         }
-            
+
         public AABB Hitbox()
         {
             return hitbox;
@@ -168,26 +169,29 @@ namespace GraphicalTestApp
                 YVelocity = -_maxSpeed;
             }
         }
-            private void Fire(float deltaTime)
-            {
+        private void Fire(float deltaTime)
+        {
             //Fires if left shift is pressed
-                if(Input.IsKeyDown(340))
+            if (Input.IsKeyDown(340))
+            {
+                if (stopwatch.ElapsedMilliseconds > 300)
                 {
-                    if(stopwatch.ElapsedMilliseconds > 300)
-                    {
-                         _turret1.Fire();
-                        stopwatch.Restart();
-                    }
+                    _turret1.Fire();
+                    stopwatch.Restart();
                 }
-                
             }
 
-
-        public void Playerhit()
-        {
-         
-            Parent.RemoveChild(player1);
- 
         }
+
+        private void playerHit()
+        {
+            if (hitbox.DetectCollision(hitbox) == true)
+            {
+                Parent.RemoveChild(this);
+            }
+
+        }
+
+
     }
 }

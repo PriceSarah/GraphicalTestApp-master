@@ -123,6 +123,7 @@ namespace GraphicalTestApp
                 YVelocity = -YVelocity;
 
             }
+
         }
 
         private void turretRotation(float deltaTime)
@@ -182,10 +183,12 @@ namespace GraphicalTestApp
 
         }
 
-        public void Playerhit()
+        private void playerHit()
         {
-
-            Parent.RemoveChild(player2);
+            if (hitbox.DetectCollision(hitbox) == true)
+            {
+                Parent.RemoveChild(this);
+            }
 
         }
     }

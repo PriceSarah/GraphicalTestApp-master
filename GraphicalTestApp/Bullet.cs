@@ -28,26 +28,10 @@ namespace GraphicalTestApp
             OnUpdate += BulletCollision;
         }
 
-        private void BulletCleanUp(float deltaTime)
-        {
-            //checking left and right
-            if (_hitbox.Right >= Game.windowsizeX || _hitbox.Left <= 0)
-            {
-                XVelocity = -XVelocity;
-
-            }
-            //bounce of left and right of window
-            if (_hitbox.Bottom >= Game.windowsizeY || _hitbox.Top <= 0)
-            {
-
-                YVelocity = -YVelocity;
-
-            }
-        }
 
         private void BulletCollision(float deltaTime)
         {
-            if(_hitbox.DetectCollision(Player1.player1.hitbox))
+            if (_hitbox.DetectCollision(Player1.player1.hitbox))
             {
                 Parent.RemoveChild(this);
             }

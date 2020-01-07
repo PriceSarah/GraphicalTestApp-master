@@ -1,5 +1,5 @@
-﻿using System;
-
+﻿
+using System;
 namespace GraphicalTestApp
 {
     class AABB : Actor
@@ -47,13 +47,19 @@ namespace GraphicalTestApp
 
         public bool DetectCollision(AABB other)
         {
-            //## Implement DetectCollision(AABB) ##//
-            return !(Top <= other.Top || Bottom <= other.Bottom || Left <= other.Left || Right <= other.Right);
+            //test for overlapped as it exists faster
+            if (Right >= other.Left && Bottom >= other.Top && Left <= other.Right && Top <= other.Bottom)
+            {
+                color = Raylib.Color.BLUE;
+                return true;
+            }
+            color = Raylib.Color.RED;
+            return false;
         }
 
         public bool DetectCollision(Vector3 point)
         {
-            //## Implement DetectCollision(Vector3) ##//
+            //test for overlapped as it exists faster
             return !(point.x < Bottom || point.y < Left || point.x > Right || point.y > Top);
         }
 
